@@ -55,7 +55,7 @@ export default function BlogIndex({ posts }: Props) {
                                             <button
                                                 type="submit"
                                                 disabled={processing}
-                                                className="rounded-full border border-black/10 bg-black px-4 py-2 text-sm text-white transition hover:bg-black/90"
+                                                className="cursor-pointer rounded-full border border-black/10 bg-black px-4 py-2 text-sm text-white transition hover:bg-black/90"
                                             >
                                                 Log out
                                             </button>
@@ -94,10 +94,10 @@ export default function BlogIndex({ posts }: Props) {
                                 thinking, code craft, and storytelling live side by side.
                             </p>
                             <div className="mt-6 flex items-center gap-3">
-                                <button className="rounded-full bg-black px-5 py-2 text-sm text-white">
+                                <button className="rounded-full bg-black px-5 py-2 text-sm text-white cursor-pointer transition hover:bg-black/90">
                                     Start reading
                                 </button>
-                                <button className="rounded-full border border-black/15 bg-white px-5 py-2 text-sm">
+                                <button className="rounded-full border border-black/15 bg-white px-5 py-2 text-sm cursor-pointer transition hover:bg-white/90">
                                     Subscribe
                                 </button>
                             </div>
