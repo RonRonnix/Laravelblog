@@ -9,6 +9,7 @@ Route::get('/blog', BlogController::class)->name('blog.index');
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboards', DashboardController::class)->name('dashboards');
+    Route::inertia('/test', 'test')->name('test');
 });
 
 require __DIR__.'/settings.php';
