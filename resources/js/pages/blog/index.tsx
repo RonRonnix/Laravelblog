@@ -42,7 +42,7 @@ export default function BlogIndex({ posts }: Props) {
                             </div>
                         </div>
                         <nav className="flex items-center gap-3 text-sm">
-                            <Link href="/blog" className="rounded-full border border-black/10 bg-white/70 px-4 py-2 shadow-sm">
+                            <Link href="/blog" className="rounded-full border border-black/10 bg-white/70 px-4 py-2 shadow-sm transition hover:border-foreground/40 duration-150 hover:scale-[1.06] active:scale-95 disabled:opacity-40 disabled:cursor-not-allowed">
                                 Latest
                             </Link>
                             {auth.user ? (
@@ -55,7 +55,7 @@ export default function BlogIndex({ posts }: Props) {
                                             <button
                                                 type="submit"
                                                 disabled={processing}
-                                                className="cursor-pointer rounded-full border border-black/10 bg-black px-4 py-2 text-sm text-white transition hover:bg-black/90"
+                                                className="cursor-pointer rounded-full border border-black/10 bg-black px-4 py-2 text-sm text-white transition hover:bg-black/90 hover:border-foreground/40 duration-150 hover:scale-[1.06] active:scale-95 disabled:opacity-40 disabled:cursor-not-allowed"
                                             >
                                                 Log out
                                             </button>
@@ -191,7 +191,7 @@ export default function BlogIndex({ posts }: Props) {
                                     {rest.map((post) => (
                                         <article
                                             key={post.id}
-                                            className="group rounded-[24px] border border-black/10 bg-white p-6 transition hover:-translate-y-1 hover:shadow-[0_22px_50px_-40px_rgba(0,0,0,0.6)]"
+                                            className="group rounded-3x1 border border-black/10 bg-white p-6 transition hover:-translate-y-1 hover:shadow-[0_22px_50px_-40px_rgba(0,0,0,0.6)]"
                                         >
                                             <div className="text-xs uppercase tracking-[0.3em] text-black/40">
                                                 {post.published_at}

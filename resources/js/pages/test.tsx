@@ -27,7 +27,7 @@ export default function TestPage() {
                 <div className="flex justify-end">
                     <Link
                         href="/blog"
-                        className="rounded-full border border-border bg-background px-4 py-2 text-sm font-medium shadow-sm transition hover:border-foreground/40"
+                        className="rounded-full border border-border bg-background px-4 py-2 text-sm font-medium shadow-sm transition hover:border-foreground/40 duration-150 hover:scale-[1.06] active:scale-95 disabled:opacity-40 disabled:cursor-not-allowed"
                     >
                         Back to blog
                     </Link>
