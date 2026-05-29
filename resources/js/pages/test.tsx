@@ -1,4 +1,4 @@
-import { Head } from '@inertiajs/react';
+import { Head, Link } from '@inertiajs/react';
 
 const cards = [
     {
@@ -24,6 +24,15 @@ export default function TestPage() {
         <>
             <Head title="Test" />
             <div className="flex h-full flex-1 flex-col gap-6 p-6">
+                <div className="flex justify-end">
+                    <Link
+                        href="/blog"
+                        className="rounded-full border border-border bg-background px-4 py-2 text-sm font-medium shadow-sm transition hover:border-foreground/40"
+                    >
+                        Back to blog
+                    </Link>
+                </div>
+
                 <div className="rounded-2xl border border-border bg-background p-6 shadow-sm">
                     <p className="text-xs uppercase tracking-[0.35em] text-muted-foreground">
                         Sandbox
