@@ -29,7 +29,8 @@ class PostFactory extends Factory
             'description' => $description,
             'excerpt' => Str::limit($description, 200, '...'),
             'body' => collect(fake()->paragraphs(6))->join("\n\n"),
-            'image_url' => fake()->boolean(60) ? fake()->imageUrl(1200, 800, 'abstract') : null,
+            'image_url' => fake()->boolean(30) ? fake()->imageUrl(1200, 800, 'abstract') : null,
+            'image_path' => null,
             'published_at' => fake()->dateTimeBetween('-2 months', 'now'),
         ];
     }

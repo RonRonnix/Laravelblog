@@ -50,7 +50,8 @@ export default function Dashboards({ posts }: Props) {
                     <Form
                         method="post"
                         action="/posts"
-                        resetOnSuccess={['title', 'description', 'body', 'image_url']}
+                        encType="multipart/form-data"
+                        resetOnSuccess={['title', 'description', 'body', 'image']}
                         className="mt-6 grid gap-5"
                     >
                         {({ processing, errors }) => (
@@ -83,16 +84,16 @@ export default function Dashboards({ posts }: Props) {
                                 </div>
 
                                 <div className="grid gap-2">
-                                    <Label htmlFor="image_url">Image URL (optional)</Label>
-                                    <Input
-                                        id="image_url"
-                                        name="image_url"
-                                        placeholder="https://example.com/cover.jpg"
-                                    />
-                                    <InputError message={errors.image_url} />
+                                    <Label htmlFor="image">Image (optional)</Label>
+                                    <Input id="image" name="image" type="file" />
+                                    <InputError message={errors.image} />
                                 </div>
 
-                                <Button type="submit" disabled={processing}>
+                                <Button
+                                    type="submit"
+                                    disabled={processing}
+                                    className="cursor-pointer rounded-full border border-border bg-background px-4 py-2 text-sm font-medium shadow-sm transition hover:border-foreground/40 duration-150 hover:scale-[1.06] active:scale-95 disabled:opacity-40 disabled:cursor-not-allowed"
+                                >
                                     {processing ? 'Publishing...' : 'Publish post'}
                                 </Button>
                             </>
@@ -141,15 +142,42 @@ export default function Dashboards({ posts }: Props) {
                                         {post.is_published ? 'Published' : 'Draft'}
                                     </span>
                                 </div>
-                                <div className="mt-4 flex items-center justify-between text-xs text-muted-foreground">
+                                <div className="mt-4 flex flex-wrap items-center justify-between gap-2 text-xs text-muted-foreground">
                                     <span>
                                         {post.published_at
                                             ? `Published ${post.published_at}`
                                             : 'Not published yet'}
                                     </span>
-                                    <span className="rounded-full border border-border px-3 py-1">
-                                        Manage
-                                    </span>
+                                    <div className="flex items-center gap-2">
+                                        <Link
+                                            href={`/posts/${post.id}/edit`}
+                                            className="cursor-pointer rounded-full border border-border bg-background px-3 py-1 text-xs font-medium shadow-sm transition hover:border-foreground/40 duration-150 hover:scale-[1.06] active:scale-95 disabled:opacity-40 disabled:cursor-not-allowed"
+                                        >
+                                            Edit
+                                        </Link>
+                                        <Form
+                                            method="post"
+                                            action={`/posts/${post.id}`}
+                                            className="inline-flex"
+                                        >
+                                            {({ processing }) => (
+                                                <>
+                                                    <input
+                                                        type="hidden"
+                                                        name="_method"
+                                                        value="delete"
+                                                    />
+                                                    <button
+                                                        type="submit"
+                                                        disabled={processing}
+                                                        className="cursor-pointer rounded-full border border-border bg-background px-3 py-1 text-xs font-medium shadow-sm transition hover:border-foreground/40 duration-150 hover:scale-[1.06] active:scale-95 disabled:opacity-40 disabled:cursor-not-allowed"
+                                                    >
+                                                        Delete
+                                                    </button>
+                                                </>
+                                            )}
+                                        </Form>
+                                    </div>
                                 </div>
                             </article>
                         ))}
