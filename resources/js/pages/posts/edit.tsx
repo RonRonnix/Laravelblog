@@ -1,4 +1,5 @@
 import { Form, Head, Link } from '@inertiajs/react';
+import { useEffect, useState } from 'react';
 import InputError from '@/components/input-error';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -18,6 +19,19 @@ type Props = {
 };
 
 export default function EditPost({ post }: Props) {
+    const [previewUrl, setPreviewUrl] = useState<string | null>(
+        post.image_url,
+    );
+    const [isObjectUrl, setIsObjectUrl] = useState(false);
+
+    useEffect(() => {
+        return () => {
+            if (previewUrl && isObjectUrl) {
+                URL.revokeObjectURL(previewUrl);
+            }
+        };
+    }, [previewUrl, isObjectUrl]);
+
     return (
         <>
             <Head title="Edit post" />
@@ -87,15 +101,38 @@ export default function EditPost({ post }: Props) {
 
                                 <div className="grid gap-2">
                                     <Label htmlFor="image">Replace image (optional)</Label>
-                                    {post.image_url && (
+                                    {previewUrl && (
                                         <img
-                                            src={post.image_url}
+                                            src={previewUrl}
                                             alt={post.title}
                                             className="h-40 w-full rounded-xl object-cover"
                                             loading="lazy"
                                         />
                                     )}
-                                    <Input id="image" name="image" type="file" />
+                                    <Input
+                                        id="image"
+                                        name="image"
+                                        type="file"
+                                        accept="image/*"
+                                        onChange={(event) => {
+                                            const file =
+                                                event.target.files?.[0] ?? null;
+
+                                            if (previewUrl && isObjectUrl) {
+                                                URL.revokeObjectURL(previewUrl);
+                                            }
+
+                                            if (file) {
+                                                setPreviewUrl(
+                                                    URL.createObjectURL(file),
+                                                );
+                                                setIsObjectUrl(true);
+                                            } else {
+                                                setPreviewUrl(post.image_url);
+                                                setIsObjectUrl(false);
+                                            }
+                                        }}
+                                    />
                                     <InputError message={errors.image} />
                                 </div>
 

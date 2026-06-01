@@ -1,4 +1,5 @@
 import { Form, Head, Link } from '@inertiajs/react';
+import { useEffect, useState } from 'react';
 import { dashboards } from '@/routes';
 import InputError from '@/components/input-error';
 import { Button } from '@/components/ui/button';
@@ -20,6 +21,17 @@ type Props = {
 };
 
 export default function Dashboards({ posts }: Props) {
+    const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+    const [isObjectUrl, setIsObjectUrl] = useState(false);
+
+    useEffect(() => {
+        return () => {
+            if (previewUrl && isObjectUrl) {
+                URL.revokeObjectURL(previewUrl);
+            }
+        };
+    }, [previewUrl, isObjectUrl]);
+
     return (
         <>
             <Head title="Dashboards" />
@@ -85,14 +97,47 @@ export default function Dashboards({ posts }: Props) {
 
                                 <div className="grid gap-2">
                                     <Label htmlFor="image">Image (optional)</Label>
-                                    <Input id="image" name="image" type="file" />
+                                    <Input
+                                        id="image"
+                                        name="image"
+                                        type="file"
+                                        accept="image/*"
+                                        className="cursor-pointer transition hover:border-foreground/40"
+                                        onChange={(event) => {
+                                            const file =
+                                                event.target.files?.[0] ?? null;
+
+                                            if (previewUrl && isObjectUrl) {
+                                                URL.revokeObjectURL(previewUrl);
+                                            }
+
+                                            if (file) {
+                                                setPreviewUrl(
+                                                    URL.createObjectURL(file),
+                                                );
+                                                setIsObjectUrl(true);
+                                            } else {
+                                                setPreviewUrl(null);
+                                                setIsObjectUrl(false);
+                                            }
+                                        }}
+                                    />
                                     <InputError message={errors.image} />
                                 </div>
+
+                                {previewUrl && (
+                                    <img
+                                        src={previewUrl}
+                                        alt="Selected preview"
+                                        className="h-40 w-full rounded-xl object-cover"
+                                        loading="lazy"
+                                    />
+                                )}
 
                                 <Button
                                     type="submit"
                                     disabled={processing}
-                                    className="cursor-pointer rounded-full border border-border bg-background px-4 py-2 text-sm font-medium shadow-sm transition hover:border-foreground/40 duration-150 hover:scale-[1.06] active:scale-95 disabled:opacity-40 disabled:cursor-not-allowed"
+                                    className="cursor-pointer rounded-full border border-border bg-background px-3 py-1.5 text-xs font-semibold text-white shadow-sm transition hover:bg-black/90 hover:border-foreground/40 duration-120 hover:scale-[1.02] active:scale-95 disabled:opacity-40 disabled:cursor-not-allowed"
                                 >
                                     {processing ? 'Publishing...' : 'Publish post'}
                                 </Button>
