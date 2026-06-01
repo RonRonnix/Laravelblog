@@ -20,7 +20,8 @@ class BlogController extends Controller
                 'id' => $post->id,
                 'title' => $post->title,
                 'slug' => $post->slug,
-                'excerpt' => $post->excerpt,
+                'description' => $post->description ?? $post->excerpt,
+                'image_url' => $post->image_url,
                 'published_at' => optional($post->published_at)->toDateString(),
                 'author' => [
                     'name' => $post->author?->name,

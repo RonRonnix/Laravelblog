@@ -20,13 +20,16 @@ class PostFactory extends Factory
     public function definition(): array
     {
         $title = fake()->unique()->sentence(6);
+        $description = fake()->paragraph();
 
         return [
             'user_id' => User::factory(),
             'title' => $title,
             'slug' => Str::slug($title),
-            'excerpt' => Str::limit(fake()->paragraph(), 200, '...'),
+            'description' => $description,
+            'excerpt' => Str::limit($description, 200, '...'),
             'body' => collect(fake()->paragraphs(6))->join("\n\n"),
+            'image_url' => fake()->boolean(60) ? fake()->imageUrl(1200, 800, 'abstract') : null,
             'published_at' => fake()->dateTimeBetween('-2 months', 'now'),
         ];
     }

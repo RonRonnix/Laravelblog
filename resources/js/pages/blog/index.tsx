@@ -5,7 +5,8 @@ type Post = {
     id: number;
     title: string;
     slug: string;
-    excerpt: string | null;
+    description: string | null;
+    image_url: string | null;
     published_at: string | null;
     author: {
         name: string | null;
@@ -152,8 +153,16 @@ export default function BlogIndex({ posts }: Props) {
                                             {featured.title}
                                         </h2>
                                         <p className="mt-3 text-sm text-black/70">
-                                            {featured.excerpt}
+                                            {featured.description}
                                         </p>
+                                        {featured.image_url && (
+                                            <img
+                                                src={featured.image_url}
+                                                alt={featured.title}
+                                                className="mt-6 h-40 w-full rounded-2xl object-cover"
+                                                loading="lazy"
+                                            />
+                                        )}
                                         <div className="mt-6 flex items-center justify-between text-xs text-black/50">
                                             <span>{featured.author.name}</span>
                                             <span>{featured.published_at}</span>
@@ -200,8 +209,16 @@ export default function BlogIndex({ posts }: Props) {
                                                 {post.title}
                                             </h4>
                                             <p className="mt-3 text-sm text-black/65">
-                                                {post.excerpt}
+                                                {post.description}
                                             </p>
+                                            {post.image_url && (
+                                                <img
+                                                    src={post.image_url}
+                                                    alt={post.title}
+                                                    className="mt-4 h-32 w-full rounded-2xl object-cover"
+                                                    loading="lazy"
+                                                />
+                                            )}
                                             <div className="mt-6 flex items-center justify-between text-xs text-black/50">
                                                 <span>{post.author.name}</span>
                                                 <span className="rounded-full border border-black/10 px-3 py-1">

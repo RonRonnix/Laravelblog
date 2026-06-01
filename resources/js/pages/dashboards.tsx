@@ -1,10 +1,16 @@
-import { Head, Link } from '@inertiajs/react';
+import { Form, Head, Link } from '@inertiajs/react';
 import { dashboards } from '@/routes';
+import InputError from '@/components/input-error';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Textarea } from '@/components/ui/textarea';
 
 type Post = {
     id: number;
     title: string;
-    excerpt: string | null;
+    description: string | null;
+    image_url: string | null;
     published_at: string | null;
     is_published: boolean;
 };
@@ -36,6 +42,64 @@ export default function Dashboards({ posts }: Props) {
                     </Link>
                 </div>
 
+                <div className="rounded-xl border border-border bg-background p-6 shadow-sm">
+                    <h2 className="text-lg font-semibold">Create a post</h2>
+                    <p className="mt-1 text-sm text-muted-foreground">
+                        Share a new story that will appear on the blog.
+                    </p>
+                    <Form
+                        method="post"
+                        action="/posts"
+                        resetOnSuccess={['title', 'description', 'body', 'image_url']}
+                        className="mt-6 grid gap-5"
+                    >
+                        {({ processing, errors }) => (
+                            <>
+                                <div className="grid gap-2">
+                                    <Label htmlFor="title">Title</Label>
+                                    <Input id="title" name="title" placeholder="Post title" />
+                                    <InputError message={errors.title} />
+                                </div>
+
+                                <div className="grid gap-2">
+                                    <Label htmlFor="description">Description</Label>
+                                    <Textarea
+                                        id="description"
+                                        name="description"
+                                        placeholder="Short summary for the blog feed"
+                                    />
+                                    <InputError message={errors.description} />
+                                </div>
+
+                                <div className="grid gap-2">
+                                    <Label htmlFor="body">Body</Label>
+                                    <Textarea
+                                        id="body"
+                                        name="body"
+                                        className="min-h-40"
+                                        placeholder="Write the full post content"
+                                    />
+                                    <InputError message={errors.body} />
+                                </div>
+
+                                <div className="grid gap-2">
+                                    <Label htmlFor="image_url">Image URL (optional)</Label>
+                                    <Input
+                                        id="image_url"
+                                        name="image_url"
+                                        placeholder="https://example.com/cover.jpg"
+                                    />
+                                    <InputError message={errors.image_url} />
+                                </div>
+
+                                <Button type="submit" disabled={processing}>
+                                    {processing ? 'Publishing...' : 'Publish post'}
+                                </Button>
+                            </>
+                        )}
+                    </Form>
+                </div>
+
                 {posts.length === 0 ? (
                     <div className="rounded-xl border border-dashed border-border bg-muted/20 p-8 text-center">
                         <h2 className="text-lg font-semibold">No posts yet</h2>
@@ -56,8 +120,16 @@ export default function Dashboards({ posts }: Props) {
                                             {post.title}
                                         </h2>
                                         <p className="mt-2 text-sm text-muted-foreground">
-                                            {post.excerpt ?? 'No excerpt yet.'}
+                                            {post.description ?? 'No description yet.'}
                                         </p>
+                                        {post.image_url && (
+                                            <img
+                                                src={post.image_url}
+                                                alt={post.title}
+                                                className="mt-4 h-32 w-full rounded-xl object-cover"
+                                                loading="lazy"
+                                            />
+                                        )}
                                     </div>
                                     <span
                                         className={`rounded-full px-3 py-1 text-xs font-semibold ${

@@ -20,7 +20,8 @@ class DashboardController extends Controller
             ->map(fn (Post $post) => [
                 'id' => $post->id,
                 'title' => $post->title,
-                'excerpt' => $post->excerpt,
+                'description' => $post->description ?? $post->excerpt,
+                'image_url' => $post->image_url,
                 'published_at' => optional($post->published_at)->toDateString(),
                 'is_published' => $post->published_at !== null,
             ]);
