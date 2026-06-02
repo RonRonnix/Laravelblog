@@ -23,9 +23,9 @@ export default function BlogShow({ post }: Props) {
             <Head title={post.title} />
             <div className="min-h-screen bg-[#e7ded4] text-[#25211c]">
                 <header className="border-b border-[#d8cfc4] bg-[#fffaf4]/80">
-                    <div className="mx-auto flex w-full max-w-4xl items-center justify-between px-6 py-5">
+                    <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-6">
                         <Link href="/blog" className="text-sm font-semibold">
-                            Lampblack
+                            Home
                         </Link>
                         <Link
                             href="/blog"
@@ -36,7 +36,7 @@ export default function BlogShow({ post }: Props) {
                     </div>
                 </header>
 
-                <main className="mx-auto w-full max-w-4xl px-6 py-12">
+                <main className="mx-auto w-full max-w-6xl px-6 pt-12 pb-20">
                     <article>
                         <div className="text-xs tracking-[0.35em] text-[#7a6f63] uppercase">
                             {post.published_at}
@@ -55,7 +55,7 @@ export default function BlogShow({ post }: Props) {
                             <img
                                 src={post.image_url}
                                 alt={post.title}
-                                className="mt-8 h-72 w-full rounded-[28px] object-cover shadow-[0_28px_80px_-55px_rgba(0,0,0,0.55)]"
+                                className="mt-8 h-80 w-full rounded-[28px] object-cover shadow-[0_28px_80px_-55px_rgba(0,0,0,0.55)]"
                             />
                         )}
 

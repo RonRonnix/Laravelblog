@@ -1,5 +1,6 @@
-import { Form, Head, Link, usePage } from '@inertiajs/react';
-import { logout, login } from '@/routes';
+import { Head, Link, usePage } from '@inertiajs/react';
+import { LogoutButton } from '@/components/logout-button';
+import { login } from '@/routes';
 
 type Post = {
     id: number;
@@ -56,28 +57,7 @@ export default function BlogIndex({ posts }: Props) {
                                     <span className="text-sm text-black/70">
                                         Hi, {auth.user.name}
                                     </span>
-                                    <Form
-                                        {...logout.form()}
-                                        onSubmit={(event) => {
-                                            if (
-                                                !window.confirm(
-                                                    'Are you sure you want to log out?',
-                                                )
-                                            ) {
-                                                event.preventDefault();
-                                            }
-                                        }}
-                                    >
-                                        {({ processing }) => (
-                                            <button
-                                                type="submit"
-                                                disabled={processing}
-                                                className="cursor-pointer rounded-full border border-black/10 bg-black px-4 py-2 text-sm text-white transition duration-150 hover:scale-[1.06] hover:border-foreground/40 hover:bg-black/90 active:scale-95 disabled:cursor-not-allowed disabled:opacity-40"
-                                            >
-                                                Log out
-                                            </button>
-                                        )}
-                                    </Form>
+                                    <LogoutButton className="cursor-pointer rounded-full border border-black/10 bg-black px-4 py-2 text-sm text-white transition duration-150 hover:scale-[1.06] hover:border-foreground/40 hover:bg-black/90 active:scale-95 disabled:cursor-not-allowed disabled:opacity-40" />
                                 </div>
                             ) : (
                                 <div className="flex items-center gap-2">
