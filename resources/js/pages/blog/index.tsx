@@ -93,10 +93,10 @@ export default function BlogIndex({ posts }: Props) {
                                 live side by side.
                             </p>
                             <div className="mt-6 flex items-center gap-3">
-                                <button className="cursor-pointer rounded-full bg-black px-5 py-2 text-sm text-white transition hover:bg-black/90">
+                                <button className="cursor-pointer rounded-full bg-black px-5 py-2 text-sm text-white transition hover:bg-black/90 duration-150 hover:scale-[1.06] active:scale-95 disabled:opacity-40 disabled:cursor-not-allowed">
                                     Start reading
                                 </button>
-                                <button className="cursor-pointer rounded-full border border-black/15 bg-white px-5 py-2 text-sm transition hover:bg-white/90">
+                                <button className="cursor-pointer rounded-full border border-black/15 bg-white px-5 py-2 text-sm transition hover:bg-white/90 duration-150 hover:scale-[1.06] active:scale-95 disabled:opacity-40 disabled:cursor-not-allowed">
                                     Subscribe
                                 </button>
                             </div>
@@ -171,7 +171,7 @@ export default function BlogIndex({ posts }: Props) {
                                                 </span>
                                                 <Link
                                                     href={`/blog/${featured.slug}`}
-                                                    className="rounded-full border border-black/10 bg-black px-4 py-2 text-xs font-medium text-white transition hover:bg-black/90"
+                                                    className="rounded-full border border-black/10 bg-black px-4 py-2 text-xs font-medium text-white transition hover:bg-black/90 duration-150 hover:scale-[1.06] active:scale-95 disabled:opacity-40 disabled:cursor-not-allowed"
                                                 >
                                                     Read
                                                 </Link>
@@ -236,7 +236,7 @@ export default function BlogIndex({ posts }: Props) {
                                                 <span>{post.author.name}</span>
                                                 <Link
                                                     href={`/blog/${post.slug}`}
-                                                    className="rounded-full border border-black/10 px-3 py-1 transition hover:border-black/30 hover:bg-black hover:text-white"
+                                                    className="rounded-full border border-black/10 px-3 py-1 transition hover:border-black/30 hover:bg-black hover:text-white duration-150 hover:scale-[1.06] active:scale-95 disabled:opacity-40 disabled:cursor-not-allowed"
                                                 >
                                                     Read
                                                 </Link>

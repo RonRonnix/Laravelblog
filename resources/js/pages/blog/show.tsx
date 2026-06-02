@@ -55,7 +55,7 @@ export default function BlogShow({ post }: Props) {
                             <img
                                 src={post.image_url}
                                 alt={post.title}
-                                className="mt-8 h-80 w-full rounded-[28px] object-cover shadow-[0_28px_80px_-55px_rgba(0,0,0,0.55)]"
+                                className="mt-8 h-full w-full rounded-[28px] object-cover shadow-[0_28px_80px_-55px_rgba(0,0,0,0.55)]"
                             />
                         )}
 
