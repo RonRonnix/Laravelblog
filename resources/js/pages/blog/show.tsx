@@ -21,15 +21,15 @@ export default function BlogShow({ post }: Props) {
     return (
         <>
             <Head title={post.title} />
-            <div className="min-h-screen bg-[#fbf7f2] text-[#1c1a16]">
-                <header className="border-b border-black/10 bg-white/70">
+            <div className="min-h-screen bg-[#e7ded4] text-[#25211c]">
+                <header className="border-b border-[#d8cfc4] bg-[#fffaf4]/80">
                     <div className="mx-auto flex w-full max-w-4xl items-center justify-between px-6 py-5">
                         <Link href="/blog" className="text-sm font-semibold">
                             Lampblack
                         </Link>
                         <Link
                             href="/blog"
-                            className="rounded-full border border-black/10 bg-white px-4 py-2 text-sm shadow-sm transition hover:border-black/30"
+                            className="rounded-full border border-[#d8cfc4] bg-[#fffaf4] px-4 py-2 text-sm shadow-sm transition hover:border-[#b8aa9a]"
                         >
                             Back to blog
                         </Link>
@@ -38,7 +38,7 @@ export default function BlogShow({ post }: Props) {
 
                 <main className="mx-auto w-full max-w-4xl px-6 py-12">
                     <article>
-                        <div className="text-xs tracking-[0.35em] text-black/40 uppercase">
+                        <div className="text-xs tracking-[0.35em] text-[#7a6f63] uppercase">
                             {post.published_at}
                             {post.author.name ? ` by ${post.author.name}` : ''}
                         </div>
@@ -46,7 +46,7 @@ export default function BlogShow({ post }: Props) {
                             {post.title}
                         </h1>
                         {post.description && (
-                            <p className="mt-5 max-w-3xl text-lg leading-8 text-black/65">
+                            <p className="mt-5 max-w-3xl text-lg leading-8 text-[#5f554b]">
                                 {post.description}
                             </p>
                         )}
@@ -59,7 +59,7 @@ export default function BlogShow({ post }: Props) {
                             />
                         )}
 
-                        <div className="mt-10 rounded-[28px] border border-black/10 bg-white p-8 text-base leading-8 whitespace-pre-line text-black/75 shadow-[0_24px_70px_-60px_rgba(0,0,0,0.45)]">
+                        <div className="mt-10 rounded-[28px] border border-[#e1d7cc] bg-[#fffaf4] p-8 text-base leading-8 whitespace-pre-line text-[#3b352e] shadow-[0_18px_55px_-45px_rgba(63,48,36,0.45)]">
                             {post.body}
                         </div>
                     </article>

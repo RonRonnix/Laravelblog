@@ -28,7 +28,7 @@ export default function BlogIndex({ posts }: Props) {
     return (
         <>
             <Head title="Blog" />
-            <div className="min-h-screen bg-[#fbf7f2] text-[#1c1a16]">
+            <div className="min-h-screen bg-[#e7ded4] text-[#1c1a16]">
                 <div className="relative overflow-hidden border-b border-black/10 bg-[radial-gradient(900px_400px_at_15%_-10%,#ffe6d2,transparent),radial-gradient(700px_300px_at_85%_0%,#d8f1ff,transparent)]">
                     <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-6">
                         <div className="flex items-center gap-3">
@@ -56,7 +56,18 @@ export default function BlogIndex({ posts }: Props) {
                                     <span className="text-sm text-black/70">
                                         Hi, {auth.user.name}
                                     </span>
-                                    <Form {...logout.form()}>
+                                    <Form
+                                        {...logout.form()}
+                                        onSubmit={(event) => {
+                                            if (
+                                                !window.confirm(
+                                                    'Are you sure you want to log out?',
+                                                )
+                                            ) {
+                                                event.preventDefault();
+                                            }
+                                        }}
+                                    >
                                         {({ processing }) => (
                                             <button
                                                 type="submit"
