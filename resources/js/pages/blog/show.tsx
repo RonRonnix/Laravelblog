@@ -29,7 +29,7 @@ export default function BlogShow({ post }: Props) {
                         </Link>
                         <Link
                             href="/blog"
-                            className="rounded-full border border-[#d8cfc4] bg-[#fffaf4] px-4 py-2 text-sm shadow-sm transition hover:border-[#b8aa9a]"
+                            className="rounded-full border border-[#d8cfc4] bg-[#fffaf4] px-4 py-2 text-sm shadow-sm transition hover:border-[#b8aa9a] duration-150 hover:scale-[1.06] active:scale-95 disabled:opacity-40 disabled:cursor-not-allowed"
                         >
                             Back to blog
                         </Link>
