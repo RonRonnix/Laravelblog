@@ -35,4 +35,28 @@ class BlogController extends Controller
             'posts' => $posts,
         ]);
     }
+
+    public function show(Post $post): Response
+    {
+        abort_unless($post->published_at, 404);
+
+        $post->load('author:id,name');
+
+        return Inertia::render('blog/show', [
+            'post' => [
+                'id' => $post->id,
+                'title' => $post->title,
+                'slug' => $post->slug,
+                'description' => $post->description ?? $post->excerpt,
+                'body' => $post->body,
+                'image_url' => $post->image_path
+                    ? Storage::url($post->image_path)
+                    : $post->image_url,
+                'published_at' => optional($post->published_at)->toDateString(),
+                'author' => [
+                    'name' => $post->author?->name,
+                ],
+            ],
+        ]);
+    }
 }

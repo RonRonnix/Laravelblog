@@ -90,7 +90,7 @@ class PostController extends Controller
             'body' => $data['body'],
         ])->save();
 
-        return redirect()->route('dashboards')->with('status', 'Post updated.');
+        return redirect()->route('dashboard')->with('status', 'Post updated.');
     }
 
     public function destroy(Request $request, Post $post): RedirectResponse

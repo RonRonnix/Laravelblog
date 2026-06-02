@@ -29,7 +29,7 @@ class DashboardController extends Controller
                 'is_published' => $post->published_at !== null,
             ]);
 
-        return Inertia::render('dashboards', [
+        return Inertia::render('dashboard', [
             'posts' => $posts,
         ]);
     }

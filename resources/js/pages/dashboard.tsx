@@ -1,6 +1,6 @@
 import { Form, Head, Link } from '@inertiajs/react';
 import { useEffect, useState } from 'react';
-import { dashboards } from '@/routes';
+import { dashboard } from '@/routes';
 import InputError from '@/components/input-error';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -20,7 +20,7 @@ type Props = {
     posts: Post[];
 };
 
-export default function Dashboards({ posts }: Props) {
+export default function Dashboard({ posts }: Props) {
     const [previewUrl, setPreviewUrl] = useState<string | null>(null);
     const [isObjectUrl, setIsObjectUrl] = useState(false);
 
@@ -34,11 +34,11 @@ export default function Dashboards({ posts }: Props) {
 
     return (
         <>
-            <Head title="Dashboards" />
+            <Head title="dashboard" />
             <div className="flex h-full flex-1 flex-col gap-6 overflow-x-auto rounded-xl p-4">
                 <div className="flex flex-wrap items-center justify-between gap-3">
                     <div>
-                        <p className="text-xs uppercase tracking-[0.3em] text-muted-foreground">
+                        <p className="text-xs tracking-[0.3em] text-muted-foreground uppercase">
                             Author studio
                         </p>
                         <h1 className="text-2xl font-semibold">Your posts</h1>
@@ -48,7 +48,7 @@ export default function Dashboards({ posts }: Props) {
                     </div>
                     <Link
                         href="/blog"
-                        className="rounded-full border border-border bg-background px-4 py-2 text-sm font-medium shadow-sm transition hover:border-foreground/40 duration-150 hover:scale-[1.06] active:scale-95 disabled:opacity-40 disabled:cursor-not-allowed"
+                        className="rounded-full border border-border bg-background px-4 py-2 text-sm font-medium shadow-sm transition duration-150 hover:scale-[1.06] hover:border-foreground/40 active:scale-95 disabled:cursor-not-allowed disabled:opacity-40"
                     >
                         Back to blog
                     </Link>
@@ -63,19 +63,30 @@ export default function Dashboards({ posts }: Props) {
                         method="post"
                         action="/posts"
                         encType="multipart/form-data"
-                        resetOnSuccess={['title', 'description', 'body', 'image']}
+                        resetOnSuccess={[
+                            'title',
+                            'description',
+                            'body',
+                            'image',
+                        ]}
                         className="mt-6 grid gap-5"
                     >
                         {({ processing, errors }) => (
                             <>
                                 <div className="grid gap-2">
                                     <Label htmlFor="title">Title</Label>
-                                    <Input id="title" name="title" placeholder="Post title" />
+                                    <Input
+                                        id="title"
+                                        name="title"
+                                        placeholder="Post title"
+                                    />
                                     <InputError message={errors.title} />
                                 </div>
 
                                 <div className="grid gap-2">
-                                    <Label htmlFor="description">Description</Label>
+                                    <Label htmlFor="description">
+                                        Description
+                                    </Label>
                                     <Textarea
                                         id="description"
                                         name="description"
@@ -96,7 +107,9 @@ export default function Dashboards({ posts }: Props) {
                                 </div>
 
                                 <div className="grid gap-2">
-                                    <Label htmlFor="image">Image (optional)</Label>
+                                    <Label htmlFor="image">
+                                        Image (optional)
+                                    </Label>
                                     <Input
                                         id="image"
                                         name="image"
@@ -137,9 +150,11 @@ export default function Dashboards({ posts }: Props) {
                                 <Button
                                     type="submit"
                                     disabled={processing}
-                                    className="cursor-pointer rounded-full border border-border bg-background px-3 py-1.5 text-xs font-semibold text-white shadow-sm transition hover:bg-black/90 hover:border-foreground/40 duration-120 hover:scale-[1.02] active:scale-95 disabled:opacity-40 disabled:cursor-not-allowed"
+                                    className="cursor-pointer rounded-full border border-border bg-background px-3 py-1.5 text-xs font-semibold text-white shadow-sm transition duration-120 hover:scale-[1.02] hover:border-foreground/40 hover:bg-black/90 active:scale-95 disabled:cursor-not-allowed disabled:opacity-40"
                                 >
-                                    {processing ? 'Publishing...' : 'Publish post'}
+                                    {processing
+                                        ? 'Publishing...'
+                                        : 'Publish post'}
                                 </Button>
                             </>
                         )}
@@ -166,7 +181,8 @@ export default function Dashboards({ posts }: Props) {
                                             {post.title}
                                         </h2>
                                         <p className="mt-2 text-sm text-muted-foreground">
-                                            {post.description ?? 'No description yet.'}
+                                            {post.description ??
+                                                'No description yet.'}
                                         </p>
                                         {post.image_url && (
                                             <img
@@ -184,7 +200,9 @@ export default function Dashboards({ posts }: Props) {
                                                 : 'bg-amber-100 text-amber-700'
                                         }`}
                                     >
-                                        {post.is_published ? 'Published' : 'Draft'}
+                                        {post.is_published
+                                            ? 'Published'
+                                            : 'Draft'}
                                     </span>
                                 </div>
                                 <div className="mt-4 flex flex-wrap items-center justify-between gap-2 text-xs text-muted-foreground">
@@ -196,7 +214,7 @@ export default function Dashboards({ posts }: Props) {
                                     <div className="flex items-center gap-2">
                                         <Link
                                             href={`/posts/${post.id}/edit`}
-                                            className="cursor-pointer rounded-full border border-border bg-background px-3 py-1 text-xs font-medium shadow-sm transition hover:border-foreground/40 duration-150 hover:scale-[1.06] active:scale-95 disabled:opacity-40 disabled:cursor-not-allowed"
+                                            className="cursor-pointer rounded-full border border-border bg-background px-3 py-1 text-xs font-medium shadow-sm transition duration-150 hover:scale-[1.06] hover:border-foreground/40 active:scale-95 disabled:cursor-not-allowed disabled:opacity-40"
                                         >
                                             Edit
                                         </Link>
@@ -215,7 +233,7 @@ export default function Dashboards({ posts }: Props) {
                                                     <button
                                                         type="submit"
                                                         disabled={processing}
-                                                        className="cursor-pointer rounded-full border border-border bg-background px-3 py-1 text-xs font-medium shadow-sm transition hover:border-foreground/40 duration-150 hover:scale-[1.06] active:scale-95 disabled:opacity-40 disabled:cursor-not-allowed"
+                                                        className="cursor-pointer rounded-full border border-border bg-background px-3 py-1 text-xs font-medium shadow-sm transition duration-150 hover:scale-[1.06] hover:border-foreground/40 active:scale-95 disabled:cursor-not-allowed disabled:opacity-40"
                                                     >
                                                         Delete
                                                     </button>
@@ -233,11 +251,11 @@ export default function Dashboards({ posts }: Props) {
     );
 }
 
-Dashboards.layout = {
+Dashboard.layout = {
     breadcrumbs: [
         {
-            title: 'Dashboards',
-            href: dashboards(),
+            title: 'dashboard',
+            href: dashboard(),
         },
     ],
 };
