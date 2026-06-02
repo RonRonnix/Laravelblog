@@ -42,11 +42,12 @@ export function UserMenuContent({ user }: Props) {
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuItem
-                asChild
+                className="p-0"
                 onSelect={(event) => event.preventDefault()}
             >
                 <LogoutButton
-                    className="block w-full cursor-pointer"
+                    className="flex w-full cursor-pointer items-center gap-2 rounded-sm px-2 py-1.5 text-left text-sm transition duration-150 hover:scale-[1.02] hover:bg-accent hover:text-accent-foreground active:scale-95 disabled:cursor-not-allowed disabled:opacity-40 [&_svg]:size-4 [&_svg]:shrink-0"
+                    onBeforeConfirm={cleanup}
                     onBeforeLogout={cleanup}
                     data-test="logout-button"
                 >

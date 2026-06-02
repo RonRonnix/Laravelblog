@@ -9,6 +9,7 @@ type LogoutButtonProps = {
     confirm?: boolean;
     confirmationTitle?: string;
     confirmationMessage?: string;
+    onBeforeConfirm?: () => void;
     onBeforeLogout?: () => void;
 } & Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'type'>;
 
@@ -19,6 +20,7 @@ function LogoutButtonComponent(
         confirmationTitle = 'Log out?',
         confirmationMessage = 'Are you sure you want to log out?',
         disabled,
+        onBeforeConfirm,
         onBeforeLogout,
         onClick,
         ...props
@@ -50,6 +52,7 @@ function LogoutButtonComponent(
         }
 
         if (confirm) {
+            onBeforeConfirm?.();
             setIsConfirmOpen(true);
             return;
         }
@@ -75,7 +78,7 @@ function LogoutButtonComponent(
                           <div className="mt-6 flex justify-end gap-2">
                               <button
                                   type="button"
-                                  className="rounded-full border border-border bg-background px-4 py-2 text-sm font-medium transition hover:border-foreground/40 disabled:cursor-not-allowed disabled:opacity-40"
+                                  className="cursor-pointer rounded-full border border-border bg-background px-4 py-2 text-sm font-medium transition duration-150 hover:scale-[1.04] hover:border-foreground/40 active:scale-95 disabled:cursor-not-allowed disabled:opacity-40"
                                   disabled={processing}
                                   onClick={() => setIsConfirmOpen(false)}
                               >
@@ -83,7 +86,7 @@ function LogoutButtonComponent(
                               </button>
                               <button
                                   type="button"
-                                  className="rounded-full bg-black px-4 py-2 text-sm font-medium text-white transition hover:bg-black/90 disabled:cursor-not-allowed disabled:opacity-40"
+                                  className="cursor-pointer rounded-full bg-black px-4 py-2 text-sm font-medium text-white transition duration-150 hover:scale-[1.04] hover:bg-black/90 active:scale-95 disabled:cursor-not-allowed disabled:opacity-40"
                                   disabled={processing}
                                   onClick={handleLogout}
                               >
