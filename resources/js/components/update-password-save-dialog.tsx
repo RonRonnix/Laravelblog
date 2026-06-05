@@ -41,6 +41,7 @@ export default function UpdatePasswordSaveDialog({
                     type="button"
                     disabled={disabled}
                     data-test="update-password-button"
+                    className="cursor-pointer"
                 >
                     Save
                 </Button>
@@ -58,6 +59,7 @@ export default function UpdatePasswordSaveDialog({
                             variant="secondary"
                             type="button"
                             disabled={processing}
+                            className="cursor-pointer"
                         >
                             Cancel
                         </Button>
@@ -65,6 +67,7 @@ export default function UpdatePasswordSaveDialog({
                     <Button
                         type="submit"
                         form={formId}
+                        className="cursor-pointer"
                         data-test="confirm-update-password"
                         disabled={disabled}
                     >
