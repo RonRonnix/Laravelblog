@@ -18,11 +18,17 @@ type Props = {
     description?: ReactNode;
     formId: string;
     processing?: boolean;
+    open: boolean;
+    onOpenChange: (open: boolean) => void;
 };
+
+
 
 export default function UpdatePasswordSaveDialog({
     formId,
     isDisabled,
+    open,
+    onOpenChange,
     confirmLabel = 'Update password',
     description = (
         <>
@@ -35,19 +41,23 @@ export default function UpdatePasswordSaveDialog({
     const disabled = Boolean(isDisabled || processing);
 
     return (
-        <Dialog>
+        <Dialog open={open} onOpenChange={onOpenChange}>
             <DialogTrigger asChild>
                 <Button
                     type="button"
                     disabled={disabled}
                     data-test="update-password-button"
-                    className="cursor-pointer"
+                    className="cursor-pointer rounded-full border border-black/15 bg-white px-5 py-2 text-sm transition hover:bg-white/80 duration-150 hover:scale-[1.06] active:scale-95 disabled:opacity-40 disabled:cursor-not-allowed"
                 >
                     Save
                 </Button>
             </DialogTrigger>
 
-            <DialogContent>
+            <DialogContent
+                onOpenAutoFocus={(e) => {
+                    e.preventDefault();
+                }}
+            >
                 <DialogHeader>
                     <DialogTitle>Confirm password update</DialogTitle>
                     <DialogDescription>{description}</DialogDescription>
@@ -59,17 +69,20 @@ export default function UpdatePasswordSaveDialog({
                             variant="secondary"
                             type="button"
                             disabled={processing}
-                            className="cursor-pointer"
+                            className="cursor-pointer rounded-full border border-black/15 bg-black px-5 py-2 text-sm transition hover:bg-white/15 duration-150 hover:scale-[1.06] active:scale-95 disabled:opacity-40 disabled:cursor-not-allowed"
                         >
                             Cancel
                         </Button>
                     </DialogClose>
+
                     <Button
                         type="submit"
                         form={formId}
-                        className="cursor-pointer"
-                        data-test="confirm-update-password"
+                        onClick={() => onOpenChange(false)}
                         disabled={disabled}
+
+                        className="cursor-pointer rounded-full border border-black/15 bg-white px-5 py-2 text-sm transition hover:bg-white/80 duration-150 hover:scale-[1.06] active:scale-95 disabled:opacity-40 disabled:cursor-not-allowed"
+                        data-test="confirm-update-password"
                     >
                         {confirmLabel}
                     </Button>
@@ -78,3 +91,5 @@ export default function UpdatePasswordSaveDialog({
         </Dialog>
     );
 }
+
+

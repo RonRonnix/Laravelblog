@@ -1,5 +1,6 @@
 import { Form, Head } from '@inertiajs/react';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
+
 import SecurityController from '@/actions/App/Http/Controllers/Settings/SecurityController';
 import Heading from '@/components/heading';
 import InputError from '@/components/input-error';
@@ -17,6 +18,8 @@ const updatePasswordFormId = 'update-password-form';
 export default function Security(props: Props) {
     const passwordInput = useRef<HTMLInputElement>(null);
     const currentPasswordInput = useRef<HTMLInputElement>(null);
+    const [isConfirmOpen, setIsConfirmOpen] = useState(false);
+
 
     return (
         <>
@@ -43,7 +46,12 @@ export default function Security(props: Props) {
                         'current_password',
                     ]}
                     resetOnSuccess
+                    onSuccess={() => {
+                        setIsConfirmOpen(false);
+                    }}
                     onError={(errors) => {
+                        setIsConfirmOpen(false);
+
                         if (errors.password) {
                             passwordInput.current?.focus();
                         }
@@ -112,8 +120,11 @@ export default function Security(props: Props) {
                                 <UpdatePasswordSaveDialog
                                     formId={updatePasswordFormId}
                                     processing={processing}
+                                    open={isConfirmOpen}
+                                    onOpenChange={setIsConfirmOpen}
                                 />
                             </div>
+
                         </>
                     )}
                 </Form>
