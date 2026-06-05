@@ -1,7 +1,7 @@
 import { router } from '@inertiajs/react';
 import { forwardRef, useState } from 'react';
-import { createPortal } from 'react-dom';
 import type { ButtonHTMLAttributes, MouseEvent, ReactNode, Ref } from 'react';
+import { createPortal } from 'react-dom';
 import { logout } from '@/routes';
 
 type LogoutButtonProps = {
@@ -54,6 +54,7 @@ function LogoutButtonComponent(
         if (confirm) {
             onBeforeConfirm?.();
             setIsConfirmOpen(true);
+
             return;
         }
 

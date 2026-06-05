@@ -1,11 +1,11 @@
 import { Form, Head, Link } from '@inertiajs/react';
 import { useEffect, useState } from 'react';
-import { dashboard } from '@/routes';
 import InputError from '@/components/input-error';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
+import { dashboard } from '@/routes';
 
 type Post = {
     id: number;

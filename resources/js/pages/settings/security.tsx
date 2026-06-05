@@ -5,6 +5,16 @@ import Heading from '@/components/heading';
 import InputError from '@/components/input-error';
 import PasswordInput from '@/components/password-input';
 import { Button } from '@/components/ui/button';
+import {
+    Dialog,
+    DialogContent,
+    DialogDescription,
+    DialogFooter,
+    DialogHeader,
+
+    DialogTitle,
+    DialogTrigger,
+} from '@/components/ui/dialog';
 import { Label } from '@/components/ui/label';
 import { edit } from '@/routes/security';
 
@@ -106,12 +116,44 @@ export default function Security(props: Props) {
                             </div>
 
                             <div className="flex items-center gap-4">
-                                <Button
-                                    disabled={processing}
-                                    data-test="update-password-button"
-                                >
-                                    Save
-                                </Button>
+                                <Dialog>
+                                    <DialogTrigger asChild>
+                                        <Button
+                                            type="button"
+                                            disabled={processing}
+                                            data-test="update-password-button"
+                                        >
+                                            Save
+                                        </Button>
+                                    </DialogTrigger>
+
+                                    <DialogContent>
+                                        <DialogHeader>
+                                            <DialogTitle>
+                                                Confirm password update
+                                            </DialogTitle>
+                                            <DialogDescription>
+                                                Are you sure you want to update your password? This action may require your current password.
+                                            </DialogDescription>
+                                        </DialogHeader>
+
+                                        <DialogFooter>
+                                            <Button asChild variant="secondary">
+                                                <DialogTrigger asChild>
+                                                    <span />
+                                                </DialogTrigger>
+                                            </Button>
+
+                                            <Button
+                                                type="submit"
+                                                data-test="confirm-update-password"
+                                                disabled={processing}
+                                            >
+                                                Confirm
+                                            </Button>
+                                        </DialogFooter>
+                                    </DialogContent>
+                                </Dialog>
                             </div>
                         </>
                     )}
