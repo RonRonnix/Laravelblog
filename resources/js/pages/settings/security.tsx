@@ -20,7 +20,6 @@ export default function Security(props: Props) {
     const currentPasswordInput = useRef<HTMLInputElement>(null);
     const [isConfirmOpen, setIsConfirmOpen] = useState(false);
 
-
     return (
         <>
             <Head title="Security settings" />
@@ -124,7 +123,6 @@ export default function Security(props: Props) {
                                     onOpenChange={setIsConfirmOpen}
                                 />
                             </div>
-
                         </>
                     )}
                 </Form>

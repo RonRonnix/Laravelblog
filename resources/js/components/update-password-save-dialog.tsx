@@ -22,8 +22,6 @@ type Props = {
     onOpenChange: (open: boolean) => void;
 };
 
-
-
 export default function UpdatePasswordSaveDialog({
     formId,
     isDisabled,
@@ -47,7 +45,7 @@ export default function UpdatePasswordSaveDialog({
                     type="button"
                     disabled={disabled}
                     data-test="update-password-button"
-                    className="cursor-pointer rounded-full border border-black/15 bg-white px-5 py-2 text-sm transition hover:bg-white/80 duration-150 hover:scale-[1.06] active:scale-95 disabled:opacity-40 disabled:cursor-not-allowed"
+                    className="cursor-pointer rounded-full border border-black/15 bg-white px-5 py-2 text-sm transition duration-150 hover:scale-[1.06] hover:bg-white/80 active:scale-95 disabled:cursor-not-allowed disabled:opacity-40"
                 >
                     Save
                 </Button>
@@ -69,7 +67,7 @@ export default function UpdatePasswordSaveDialog({
                             variant="secondary"
                             type="button"
                             disabled={processing}
-                            className="cursor-pointer rounded-full border border-black/15 bg-black px-5 py-2 text-sm transition hover:bg-white/15 duration-150 hover:scale-[1.06] active:scale-95 disabled:opacity-40 disabled:cursor-not-allowed"
+                            className="cursor-pointer rounded-full border border-black/15 bg-black px-5 py-2 text-sm transition duration-150 hover:scale-[1.06] hover:bg-white/15 active:scale-95 disabled:cursor-not-allowed disabled:opacity-40"
                         >
                             Cancel
                         </Button>
@@ -78,10 +76,8 @@ export default function UpdatePasswordSaveDialog({
                     <Button
                         type="submit"
                         form={formId}
-                        onClick={() => onOpenChange(false)}
                         disabled={disabled}
-
-                        className="cursor-pointer rounded-full border border-black/15 bg-white px-5 py-2 text-sm transition hover:bg-white/80 duration-150 hover:scale-[1.06] active:scale-95 disabled:opacity-40 disabled:cursor-not-allowed"
+                        className="cursor-pointer rounded-full border border-black/15 bg-white px-5 py-2 text-sm transition duration-150 hover:scale-[1.06] hover:bg-white/80 active:scale-95 disabled:cursor-not-allowed disabled:opacity-40"
                         data-test="confirm-update-password"
                     >
                         {confirmLabel}
@@ -91,5 +87,3 @@ export default function UpdatePasswordSaveDialog({
         </Dialog>
     );
 }
-
-
