@@ -21,6 +21,7 @@ class PostFactory extends Factory
     {
         $title = fake()->unique()->sentence(6);
         $description = fake()->paragraph();
+        $publishedAt = fake()->dateTimeBetween('-2 months', 'now');
 
         return [
             'user_id' => User::factory(),
@@ -31,7 +32,10 @@ class PostFactory extends Factory
             'body' => collect(fake()->paragraphs(6))->join("\n\n"),
             'image_url' => fake()->boolean(30) ? fake()->imageUrl(1200, 800, 'abstract') : null,
             'image_path' => null,
-            'published_at' => fake()->dateTimeBetween('-2 months', 'now'),
+            'status' => 'published',
+            'submitted_at' => $publishedAt,
+            'reviewed_at' => $publishedAt,
+            'published_at' => $publishedAt,
         ];
     }
 }
