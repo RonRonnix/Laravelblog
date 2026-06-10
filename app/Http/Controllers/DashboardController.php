@@ -26,11 +26,38 @@ class DashboardController extends Controller
                     ? Storage::url($post->image_path)
                     : $post->image_url,
                 'published_at' => optional($post->published_at)->toDateString(),
-                'is_published' => $post->published_at !== null,
+                'status' => $post->status,
+                'is_published' => $post->isPublished(),
             ]);
+
+        $reviewPosts = $user->canPublishPosts()
+            ? Post::query()
+                ->with('author:id,name')
+                ->where('status', 'pending')
+                ->latest('submitted_at')
+                ->get()
+                ->map(fn (Post $post) => [
+                    'id' => $post->id,
+                    'title' => $post->title,
+                    'description' => $post->description ?? $post->excerpt,
+                    'image_url' => $post->image_path
+                        ? Storage::url($post->image_path)
+                        : $post->image_url,
+                    'published_at' => optional($post->published_at)->toDateString(),
+                    'submitted_at' => optional($post->submitted_at)->toDateString(),
+                    'status' => $post->status,
+                    'is_published' => $post->isPublished(),
+                    'author' => [
+                        'name' => $post->author?->name,
+                    ],
+                ])
+            : [];
 
         return Inertia::render('dashboard', [
             'posts' => $posts,
+            'review_posts' => $reviewPosts,
+            'can_write_posts' => $user->canWritePosts(),
+            'can_publish_posts' => $user->canPublishPosts(),
         ]);
     }
 }

@@ -13,6 +13,7 @@ class BlogController extends Controller
     {
         $posts = Post::query()
             ->with('author:id,name')
+            ->where('status', 'published')
             ->whereNotNull('published_at')
             ->latest('published_at')
             ->take(9)
@@ -38,9 +39,12 @@ class BlogController extends Controller
 
     public function show(Post $post): Response
     {
-        abort_unless($post->published_at, 404);
+        abort_unless($post->isPublished(), 404);
 
-        $post->load('author:id,name');
+        $post->load([
+            'author:id,name',
+            'comments.author:id,name',
+        ]);
 
         return Inertia::render('blog/show', [
             'post' => [
@@ -57,6 +61,18 @@ class BlogController extends Controller
                     'name' => $post->author?->name,
                 ],
             ],
+            'comments' => $post->comments
+                ->sortByDesc('created_at')
+                ->values()
+                ->map(fn ($comment) => [
+                    'id' => $comment->id,
+                    'body' => $comment->body,
+                    'created_at' => $comment->created_at->toDateTimeString(),
+                    'author' => [
+                        'id' => $comment->author?->id,
+                        'name' => $comment->author?->name,
+                    ],
+                ]),
         ]);
     }
 }

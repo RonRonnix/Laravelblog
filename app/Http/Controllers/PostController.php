@@ -14,6 +14,8 @@ class PostController extends Controller
 {
     public function store(Request $request): RedirectResponse
     {
+        abort_unless($request->user()->canWritePosts(), 403);
+
         $data = $request->validate([
             'title' => ['required', 'string', 'max:150'],
             'description' => ['required', 'string', 'max:500'],
@@ -31,6 +33,7 @@ class PostController extends Controller
         }
 
         $imagePath = $request->file('image')?->store('posts', 'public');
+        $isOwner = $request->user()->canPublishPosts();
 
         Post::create([
             'user_id' => $request->user()->id,
@@ -40,10 +43,13 @@ class PostController extends Controller
             'excerpt' => Str::limit($data['description'], 200, '...'),
             'body' => $data['body'],
             'image_path' => $imagePath,
-            'published_at' => now(),
+            'status' => $isOwner ? 'published' : 'pending',
+            'submitted_at' => now(),
+            'reviewed_at' => $isOwner ? now() : null,
+            'published_at' => $isOwner ? now() : null,
         ]);
 
-        return back()->with('status', 'Post published.');
+        return back()->with('status', $isOwner ? 'Post published.' : 'Post submitted for owner review.');
     }
 
     public function edit(Request $request, Post $post): Response
@@ -88,9 +94,26 @@ class PostController extends Controller
             'description' => $data['description'],
             'excerpt' => Str::limit($data['description'], 200, '...'),
             'body' => $data['body'],
+            'status' => $post->isPublished() && $request->user()->canPublishPosts() ? 'published' : 'pending',
+            'submitted_at' => now(),
+            'reviewed_at' => $post->isPublished() && $request->user()->canPublishPosts() ? $post->reviewed_at : null,
+            'published_at' => $post->isPublished() && $request->user()->canPublishPosts() ? $post->published_at : null,
         ])->save();
 
-        return redirect()->route('dashboard')->with('status', 'Post updated.');
+        return redirect()->route('dashboard')->with('status', $post->isPublished() ? 'Post updated.' : 'Post submitted for owner review.');
+    }
+
+    public function publish(Request $request, Post $post): RedirectResponse
+    {
+        abort_unless($request->user()->canPublishPosts(), 403);
+
+        $post->update([
+            'status' => 'published',
+            'reviewed_at' => now(),
+            'published_at' => now(),
+        ]);
+
+        return back()->with('status', 'Post published.');
     }
 
     public function destroy(Request $request, Post $post): RedirectResponse
@@ -108,7 +131,11 @@ class PostController extends Controller
 
     private function authorizePost(Request $request, Post $post): void
     {
-        if ($post->user_id !== $request->user()->id) {
+        if ($request->user()->canPublishPosts()) {
+            return;
+        }
+
+        if (! $request->user()->canWritePosts() || $post->user_id !== $request->user()->id) {
             abort(403);
         }
     }

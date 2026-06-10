@@ -2,6 +2,9 @@ export type User = {
     id: number;
     name: string;
     email: string;
+    role: 'user' | 'admin' | 'owner';
+    can_write_posts?: boolean;
+    can_publish_posts?: boolean;
     avatar?: string;
     email_verified_at: string | null;
     created_at: string;
