@@ -8,8 +8,8 @@ type Recipe = {
     image: string | null;
     readyInMinutes: number | null;
     servings: number | null;
+    sourceName: string | null;
     sourceUrl: string | null;
-    summary: string;
 };
 
 type Props = {
@@ -128,6 +128,11 @@ export default function RecipeIndex({ query, recipes, error }: Props) {
                                             {recipe.title}
                                         </h3>
                                         <div className="mt-3 flex flex-wrap gap-2 text-xs text-[#5f554b]">
+                                            {recipe.sourceName && (
+                                                <span className="inline-flex items-center rounded-full border border-[#d8cfc4] px-3 py-1">
+                                                    {recipe.sourceName}
+                                                </span>
+                                            )}
                                             {recipe.readyInMinutes && (
                                                 <span className="inline-flex items-center gap-1 rounded-full border border-[#d8cfc4] px-3 py-1">
                                                     <Timer className="size-3" />
@@ -141,20 +146,13 @@ export default function RecipeIndex({ query, recipes, error }: Props) {
                                                 </span>
                                             )}
                                         </div>
-                                        {recipe.summary && (
-                                            <p className="mt-4 line-clamp-4 text-sm leading-6 text-[#5f554b]">
-                                                {recipe.summary}
-                                            </p>
-                                        )}
-                                        {recipe.sourceUrl && (
-                                            <a
-                                                href={recipe.sourceUrl}
-                                                target="_blank"
-                                                rel="noreferrer"
+                                        {recipe.id && (
+                                            <Link
+                                                href={`/recipes/${recipe.id}`}
                                                 className="mt-5 inline-flex rounded-full border border-black/10 bg-black px-4 py-2 text-xs font-medium text-white transition duration-150 hover:scale-[1.04] hover:bg-black/90 active:scale-95"
                                             >
-                                                Open recipe
-                                            </a>
+                                                View recipe
+                                            </Link>
                                         )}
                                     </div>
                                 </article>
