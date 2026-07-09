@@ -4,11 +4,13 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\RecipeSearchController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', BlogController::class)->name('home');
 Route::get('/blog', BlogController::class)->name('blog.index');
 Route::get('/blog/{post:slug}', [BlogController::class, 'show'])->name('blog.show');
+Route::get('/recipes', RecipeSearchController::class)->name('recipes.index');
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', DashboardController::class)->name('dashboard');
