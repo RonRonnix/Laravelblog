@@ -33,8 +33,8 @@ class RecipeSearchController extends Controller
                             'sourceUrl' => $recipe['sourceUrl'] ?? null,
                         ])
                         ->values();
-                } catch (Throwable) {
-                    $error = 'Could not connect to Spoonacular. Please check your network and try again.';
+                } catch (Throwable $exception) {
+                    $error = $exception->getMessage();
                 }
             }
         }
@@ -57,8 +57,8 @@ class RecipeSearchController extends Controller
         } else {
             try {
                 $recipe = $this->formatRecipeDetails($this->getRecipeInformation($apiKey, $recipeId));
-            } catch (Throwable) {
-                $error = 'Could not load this recipe from Spoonacular. Please try again later.';
+            } catch (Throwable $exception) {
+                $error = $exception->getMessage();
             }
         }
 
@@ -77,9 +77,6 @@ class RecipeSearchController extends Controller
             'apiKey' => $apiKey,
             'query' => $query,
             'number' => 12,
-            'addRecipeInformation' => 'true',
-            'fillIngredients' => 'true',
-            'instructionsRequired' => 'true',
             'type' => 'main course',
             'sort' => 'popularity',
         ]);
@@ -103,6 +100,10 @@ class RecipeSearchController extends Controller
 
         if (! is_array($payload)) {
             throw new \RuntimeException('Spoonacular returned invalid JSON.');
+        }
+
+        if (($payload['status'] ?? null) === 'failure') {
+            throw new \RuntimeException((string) ($payload['message'] ?? 'Spoonacular request failed.'));
         }
 
         return $payload;

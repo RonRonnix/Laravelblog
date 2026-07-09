@@ -1,15 +1,15 @@
 import { Head, Link, router } from '@inertiajs/react';
-import { Search, Timer, UsersRound } from 'lucide-react';
+import { Search } from 'lucide-react';
 import { FormEvent, useState } from 'react';
 
 type Recipe = {
     id: number | null;
     title: string;
     image: string | null;
-    readyInMinutes: number | null;
-    servings: number | null;
-    sourceName: string | null;
-    sourceUrl: string | null;
+    readyInMinutes?: number | null;
+    servings?: number | null;
+    sourceName?: string | null;
+    sourceUrl?: string | null;
 };
 
 type Props = {
@@ -158,25 +158,11 @@ export default function RecipeIndex({ query, recipes, error }: Props) {
                                         <h3 className="text-lg font-semibold">
                                             {recipe.title}
                                         </h3>
-                                        <div className="mt-3 flex flex-wrap gap-2 text-xs text-[#5f554b]">
-                                            {recipe.sourceName && (
-                                                <span className="inline-flex items-center rounded-full border border-[#d8cfc4] px-3 py-1">
-                                                    {recipe.sourceName}
-                                                </span>
-                                            )}
-                                            {recipe.readyInMinutes && (
-                                                <span className="inline-flex items-center gap-1 rounded-full border border-[#d8cfc4] px-3 py-1">
-                                                    <Timer className="size-3" />
-                                                    {recipe.readyInMinutes} min
-                                                </span>
-                                            )}
-                                            {recipe.servings && (
-                                                <span className="inline-flex items-center gap-1 rounded-full border border-[#d8cfc4] px-3 py-1">
-                                                    <UsersRound className="size-3" />
-                                                    {recipe.servings} servings
-                                                </span>
-                                            )}
-                                        </div>
+                                        <p className="mt-3 text-sm leading-6 text-[#5f554b]">
+                                            Open the recipe page to load
+                                            ingredients, instructions, timing,
+                                            and source details.
+                                        </p>
                                         {recipe.id && (
                                             <Link
                                                 href={`/recipes/${recipe.id}`}
