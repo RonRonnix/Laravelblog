@@ -18,6 +18,15 @@ type Props = {
     error: string | null;
 };
 
+const quickSearches = [
+    'fried chicken',
+    'garlic chicken',
+    'chicken breast',
+    'chicken adobo',
+    'roast chicken',
+    'chicken pasta',
+];
+
 export default function RecipeIndex({ query, recipes, error }: Props) {
     const [search, setSearch] = useState(query);
 
@@ -84,6 +93,28 @@ export default function RecipeIndex({ query, recipes, error }: Props) {
                                 >
                                     Find recipes
                                 </button>
+                            </div>
+                            <div className="mt-4 flex flex-wrap gap-2">
+                                {quickSearches.map((quickSearch) => (
+                                    <button
+                                        key={quickSearch}
+                                        type="button"
+                                        onClick={() => {
+                                            setSearch(quickSearch);
+                                            router.get(
+                                                '/recipes',
+                                                { query: quickSearch },
+                                                {
+                                                    preserveState: true,
+                                                    preserveScroll: true,
+                                                },
+                                            );
+                                        }}
+                                        className="cursor-pointer rounded-full border border-[#d8cfc4] bg-white/70 px-3 py-1 text-xs text-[#5f554b] transition duration-150 hover:scale-[1.04] hover:border-[#b8aa9a] hover:text-[#25211c] active:scale-95"
+                                    >
+                                        {quickSearch}
+                                    </button>
+                                ))}
                             </div>
                         </form>
                     </div>

@@ -79,6 +79,9 @@ class RecipeSearchController extends Controller
             'number' => 12,
             'addRecipeInformation' => 'true',
             'fillIngredients' => 'true',
+            'instructionsRequired' => 'true',
+            'type' => 'main course',
+            'sort' => 'popularity',
         ]);
 
         $payload = $this->getJson($url);
