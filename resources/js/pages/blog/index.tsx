@@ -45,7 +45,8 @@ export default function BlogIndex({ posts }: Props) {
                                 </div>
                             </div>
                         </div>
-                        <nav className="flex items-center gap-3 text-sm">
+                        {/* homepage login/register/latest buttons */}
+                        {/* <nav className="flex items-center gap-3 text-sm">
                             <Link
                                 href="/blog"
                                 className="cursor-pointer rounded-full border border-black/10 bg-white/70 px-4 py-2 shadow-sm transition duration-150 hover:scale-[1.06] hover:border-foreground/40 active:scale-95 disabled:cursor-not-allowed disabled:opacity-40"
@@ -75,7 +76,7 @@ export default function BlogIndex({ posts }: Props) {
                                     </Link>
                                 </div>
                             )}
-                        </nav>
+                        </nav> */}
                     </div>
 
                     <div className="mx-auto grid w-full max-w-6xl gap-8 px-6 pt-6 pb-16 lg:grid-cols-[1.2fr_0.8fr]">

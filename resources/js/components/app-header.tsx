@@ -155,7 +155,7 @@ export function AppHeader({ breadcrumbs = [] }: Props) {
                         <div className="relative flex items-center space-x-1">
                             <Link
                                 href="/recipes"
-                                className="group inline-flex h-9 items-center gap-2 rounded-full border border-[#d8cfc4] bg-white/70 px-3 text-sm font-medium transition duration-150 hover:scale-[1.04] hover:border-[#b8aa9a] active:scale-95"
+                                className="group inline-flex h-9 items-center gap-2 rounded-full border border-[#d8cfc4] bg-white/80 px-3 text-sm font-medium text-[#25211c] shadow-sm transition duration-150 hover:scale-[1.04] hover:border-[#b8aa9a] active:scale-95"
                             >
                                 <Search className="!size-5 opacity-80 group-hover:opacity-100" />
                                 <span className="hidden sm:inline">
@@ -163,29 +163,49 @@ export function AppHeader({ breadcrumbs = [] }: Props) {
                                 </span>
                             </Link>
                         </div>
-                        <DropdownMenu>
-                            <DropdownMenuTrigger asChild>
-                                <Button
-                                    variant="ghost"
-                                    className="size-10 rounded-full p-1"
+                        {auth.user ? (
+                            <DropdownMenu>
+                                <DropdownMenuTrigger asChild>
+                                    <Button
+                                        variant="ghost"
+                                        className="size-10 rounded-full p-1"
+                                    >
+                                        <Avatar className="size-8 overflow-hidden rounded-full">
+                                            <AvatarImage
+                                                src={auth.user.avatar}
+                                                alt={auth.user.name}
+                                            />
+                                            <AvatarFallback className="rounded-lg bg-neutral-200 text-black dark:bg-neutral-700 dark:text-white">
+                                                {getInitials(
+                                                    auth.user.name ?? '',
+                                                )}
+                                            </AvatarFallback>
+                                        </Avatar>
+                                    </Button>
+                                </DropdownMenuTrigger>
+                                <DropdownMenuContent
+                                    className="w-56"
+                                    align="end"
                                 >
-                                    <Avatar className="size-8 overflow-hidden rounded-full">
-                                        <AvatarImage
-                                            src={auth.user?.avatar}
-                                            alt={auth.user?.name}
-                                        />
-                                        <AvatarFallback className="rounded-lg bg-neutral-200 text-black dark:bg-neutral-700 dark:text-white">
-                                            {getInitials(auth.user?.name ?? '')}
-                                        </AvatarFallback>
-                                    </Avatar>
-                                </Button>
-                            </DropdownMenuTrigger>
-                            <DropdownMenuContent className="w-56" align="end">
-                                {auth.user && (
                                     <UserMenuContent user={auth.user} />
-                                )}
-                            </DropdownMenuContent>
-                        </DropdownMenu>
+                                </DropdownMenuContent>
+                            </DropdownMenu>
+                        ) : (
+                            <div className="flex items-center gap-2">
+                                <Link
+                                    href="/login"
+                                    className="rounded-full border border-[#d8cfc4] bg-white/80 px-4 py-2 text-sm font-medium text-[#25211c] shadow-sm transition duration-150 hover:scale-[1.04] hover:border-[#b8aa9a] active:scale-95"
+                                >
+                                    Log in
+                                </Link>
+                                <Link
+                                    href="/register"
+                                    className="rounded-full bg-black px-4 py-2 text-sm font-medium text-white shadow-sm transition duration-150 hover:scale-[1.04] hover:bg-black/90 active:scale-95"
+                                >
+                                    Register
+                                </Link>
+                            </div>
+                        )}
                     </div>
                 </div>
             </div>
