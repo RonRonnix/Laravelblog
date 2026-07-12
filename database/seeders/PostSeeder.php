@@ -12,6 +12,10 @@ class PostSeeder extends Seeder
      */
     public function run(): void
     {
+        if (Post::query()->exists()) {
+            return;
+        }
+
         Post::factory(12)->create();
     }
 }
