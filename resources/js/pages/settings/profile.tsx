@@ -51,7 +51,7 @@ export default function Profile({
 
                                 <Input
                                     id="name"
-                                    className="mt-1 block w-full"
+                                    className="mt-1 block w-full border-[#d8cfc4] bg-white/70 text-[#25211c] placeholder:text-[#7a6f63]"
                                     defaultValue={auth.user.name}
                                     name="name"
                                     required
@@ -71,7 +71,7 @@ export default function Profile({
                                 <Input
                                     id="email"
                                     type="email"
-                                    className="mt-1 block w-full"
+                                    className="mt-1 block w-full border-[#d8cfc4] bg-white/70 text-[#25211c] placeholder:text-[#7a6f63]"
                                     defaultValue={auth.user.email}
                                     name="email"
                                     required
@@ -114,6 +114,7 @@ export default function Profile({
                                 <Button
                                     disabled={processing}
                                     data-test="update-profile-button"
+                                    className="cursor-pointer rounded-full bg-black px-5 py-2 text-sm text-white transition duration-150 hover:scale-[1.04] hover:bg-black/90 active:scale-95 disabled:cursor-not-allowed disabled:opacity-40"
                                 >
                                     Save
                                 </Button>

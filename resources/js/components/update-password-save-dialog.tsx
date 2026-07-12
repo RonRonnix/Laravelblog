@@ -67,7 +67,7 @@ export default function UpdatePasswordSaveDialog({
                             variant="secondary"
                             type="button"
                             disabled={processing}
-                            className="cursor-pointer rounded-full border border-black/15 bg-black px-5 py-2 text-sm transition duration-150 hover:scale-[1.06] hover:bg-white/15 active:scale-95 disabled:cursor-not-allowed disabled:opacity-40"
+                            className="cursor-pointer rounded-full border border-black/15 bg-black px-5 py-2 text-sm text-white transition duration-150 hover:scale-[1.06] hover:bg-black/90 active:scale-95 disabled:cursor-not-allowed disabled:opacity-40"
                         >
                             Cancel
                         </Button>
@@ -77,7 +77,7 @@ export default function UpdatePasswordSaveDialog({
                         type="submit"
                         form={formId}
                         disabled={disabled}
-                        className="cursor-pointer rounded-full border border-black/15 bg-white px-5 py-2 text-sm transition duration-150 hover:scale-[1.06] hover:bg-white/80 active:scale-95 disabled:cursor-not-allowed disabled:opacity-40"
+                        className="cursor-pointer rounded-full border border-black/15 bg-white px-5 py-2 text-sm text-[#25211c] transition duration-150 hover:scale-[1.06] hover:bg-white/80 active:scale-95 disabled:cursor-not-allowed disabled:opacity-40"
                         data-test="confirm-update-password"
                     >
                         {confirmLabel}
