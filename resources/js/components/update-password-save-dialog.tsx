@@ -45,7 +45,7 @@ export default function UpdatePasswordSaveDialog({
                     type="button"
                     disabled={disabled}
                     data-test="update-password-button"
-                    className="cursor-pointer rounded-full border border-black/15 bg-white px-5 py-2 text-sm transition duration-150 hover:scale-[1.06] hover:bg-white/80 active:scale-95 disabled:cursor-not-allowed disabled:opacity-40"
+                    className="cursor-pointer rounded-full border border-black/15 bg-white px-5 py-2 text-sm text-[#25211c] transition duration-150 hover:scale-[1.06] hover:bg-white/80 active:scale-95 disabled:cursor-not-allowed disabled:opacity-40 dark:border-[#4a4036] dark:bg-[#181511] dark:text-[#f4eadf] dark:hover:bg-[#2c261f]"
                 >
                     Save
                 </Button>
@@ -67,7 +67,7 @@ export default function UpdatePasswordSaveDialog({
                             variant="secondary"
                             type="button"
                             disabled={processing}
-                            className="cursor-pointer rounded-full border border-black/15 bg-black px-5 py-2 text-sm text-white transition duration-150 hover:scale-[1.06] hover:bg-black/90 active:scale-95 disabled:cursor-not-allowed disabled:opacity-40"
+                            className="cursor-pointer rounded-full border border-black/15 bg-black px-5 py-2 text-sm text-white transition duration-150 hover:scale-[1.06] hover:bg-black/90 active:scale-95 disabled:cursor-not-allowed disabled:opacity-40 dark:border-[#4a4036] dark:bg-[#181511] dark:text-[#f4eadf] dark:hover:bg-[#2c261f]"
                         >
                             Cancel
                         </Button>
@@ -77,7 +77,7 @@ export default function UpdatePasswordSaveDialog({
                         type="submit"
                         form={formId}
                         disabled={disabled}
-                        className="cursor-pointer rounded-full border border-black/15 bg-white px-5 py-2 text-sm text-[#25211c] transition duration-150 hover:scale-[1.06] hover:bg-white/80 active:scale-95 disabled:cursor-not-allowed disabled:opacity-40"
+                        className="cursor-pointer rounded-full border border-black/15 bg-white px-5 py-2 text-sm text-[#25211c] transition duration-150 hover:scale-[1.06] hover:bg-white/80 active:scale-95 disabled:cursor-not-allowed disabled:opacity-40 dark:border-[#f4eadf]/20 dark:bg-[#f4eadf] dark:text-[#151311] dark:hover:bg-white"
                         data-test="confirm-update-password"
                     >
                         {confirmLabel}

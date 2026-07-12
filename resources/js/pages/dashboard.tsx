@@ -48,17 +48,17 @@ export default function Dashboard({
     return (
         <>
             <Head title="dashboard" />
-            <div className="min-h-screen bg-[#e7ded4] px-6 py-10 text-[#25211c]">
+            <div className="min-h-screen bg-[#e7ded4] px-6 py-10 text-[#25211c] dark:bg-[#151311] dark:text-[#f4eadf]">
                 <div className="mx-auto flex w-full max-w-6xl flex-col gap-6">
                     <div className="flex flex-wrap items-center justify-between gap-3">
                         <div>
-                            <p className="text-xs tracking-[0.3em] text-[#7a6f63] uppercase">
+                            <p className="text-xs tracking-[0.3em] text-[#7a6f63] uppercase dark:text-[#a99a88]">
                                 Author studio
                             </p>
                             <h1 className="text-2xl font-semibold">
                                 Your posts
                             </h1>
-                            <p className="mt-1 text-sm text-[#5f554b]">
+                            <p className="mt-1 text-sm text-[#5f554b] dark:text-[#cdbfac]">
                                 {can_write_posts
                                     ? 'Manage stories and review publishing status.'
                                     : 'Your account can read and comment on published stories.'}
@@ -66,18 +66,18 @@ export default function Dashboard({
                         </div>
                         <Link
                             href="/blog"
-                            className="rounded-full border border-[#d8cfc4] bg-[#fffaf4] px-4 py-2 text-sm font-medium shadow-sm transition duration-150 hover:scale-[1.06] hover:border-[#b8aa9a] active:scale-95 disabled:cursor-not-allowed disabled:opacity-40"
+                            className="rounded-full border border-[#d8cfc4] bg-[#fffaf4] px-4 py-2 text-sm font-medium shadow-sm transition duration-150 hover:scale-[1.06] hover:border-[#b8aa9a] active:scale-95 disabled:cursor-not-allowed disabled:opacity-40 dark:border-[#4a4036] dark:bg-[#211d19] dark:text-[#f4eadf] dark:hover:border-[#6a5d4f]"
                         >
                             Back to blog
                         </Link>
                     </div>
 
                     {can_write_posts ? (
-                        <div className="rounded-[24px] border border-[#d8cfc4] bg-[#fffaf4] p-6 shadow-sm">
+                        <div className="rounded-[24px] border border-[#d8cfc4] bg-[#fffaf4] p-6 shadow-sm dark:border-[#3a332c] dark:bg-[#211d19]">
                             <h2 className="text-lg font-semibold">
                                 Create a post
                             </h2>
-                            <p className="mt-1 text-sm text-[#5f554b]">
+                            <p className="mt-1 text-sm text-[#5f554b] dark:text-[#cdbfac]">
                                 {can_publish_posts
                                     ? 'Publish a story directly to the blog.'
                                     : 'Submit a story for owner review before it appears on the blog.'}
@@ -101,7 +101,7 @@ export default function Dashboard({
                                             <Input
                                                 id="title"
                                                 name="title"
-                                                className="border-[#d8cfc4] bg-white/70 text-[#25211c] placeholder:text-[#7a6f63]"
+                                                className="border-[#d8cfc4] bg-white/70 text-[#25211c] placeholder:text-[#7a6f63] dark:border-[#4a4036] dark:bg-[#181511] dark:text-[#f4eadf] dark:placeholder:text-[#8f806f]"
                                                 placeholder="Post title"
                                             />
                                             <InputError
@@ -116,7 +116,7 @@ export default function Dashboard({
                                             <Textarea
                                                 id="description"
                                                 name="description"
-                                                className="border-[#d8cfc4] bg-white/70 text-[#25211c] placeholder:text-[#7a6f63]"
+                                                className="border-[#d8cfc4] bg-white/70 text-[#25211c] placeholder:text-[#7a6f63] dark:border-[#4a4036] dark:bg-[#181511] dark:text-[#f4eadf] dark:placeholder:text-[#8f806f]"
                                                 placeholder="Short summary for the blog feed"
                                             />
                                             <InputError
@@ -129,7 +129,7 @@ export default function Dashboard({
                                             <Textarea
                                                 id="body"
                                                 name="body"
-                                                className="min-h-40 border-[#d8cfc4] bg-white/70 text-[#25211c] placeholder:text-[#7a6f63]"
+                                                className="min-h-40 border-[#d8cfc4] bg-white/70 text-[#25211c] placeholder:text-[#7a6f63] dark:border-[#4a4036] dark:bg-[#181511] dark:text-[#f4eadf] dark:placeholder:text-[#8f806f]"
                                                 placeholder="Write the full post content"
                                             />
                                             <InputError message={errors.body} />
@@ -144,7 +144,7 @@ export default function Dashboard({
                                                 name="image"
                                                 type="file"
                                                 accept="image/*"
-                                                className="cursor-pointer border-[#d8cfc4] bg-white/70 text-[#25211c] transition hover:border-[#b8aa9a]"
+                                                className="cursor-pointer border-[#d8cfc4] bg-white/70 text-[#25211c] transition hover:border-[#b8aa9a] dark:border-[#4a4036] dark:bg-[#181511] dark:text-[#f4eadf] dark:hover:border-[#6a5d4f]"
                                                 onChange={(event) => {
                                                     const file =
                                                         event.target
@@ -189,7 +189,7 @@ export default function Dashboard({
                                         <Button
                                             type="submit"
                                             disabled={processing}
-                                            className="cursor-pointer rounded-full border border-border bg-background px-3 py-1.5 text-xs font-semibold text-white shadow-sm transition duration-120 hover:scale-[1.02] hover:border-foreground/40 hover:bg-black/90 active:scale-95 disabled:cursor-not-allowed disabled:opacity-40"
+                                            className="cursor-pointer rounded-full border border-border bg-black px-3 py-1.5 text-xs font-semibold text-white shadow-sm transition duration-120 hover:scale-[1.02] hover:border-foreground/40 hover:bg-black/90 active:scale-95 disabled:cursor-not-allowed disabled:opacity-40 dark:bg-[#f4eadf] dark:text-[#151311] dark:hover:bg-white"
                                         >
                                             {processing
                                                 ? 'Saving...'
@@ -202,11 +202,11 @@ export default function Dashboard({
                             </Form>
                         </div>
                     ) : (
-                        <div className="rounded-[24px] border border-[#d8cfc4] bg-[#fffaf4]/80 p-6 shadow-sm">
+                        <div className="rounded-[24px] border border-[#d8cfc4] bg-[#fffaf4]/80 p-6 shadow-sm dark:border-[#3a332c] dark:bg-[#211d19]">
                             <h2 className="text-lg font-semibold">
                                 Reader account
                             </h2>
-                            <p className="mt-1 text-sm text-[#5f554b]">
+                            <p className="mt-1 text-sm text-[#5f554b] dark:text-[#cdbfac]">
                                 You can view published posts and manage your own
                                 comments. Blog writing requires an admin or
                                 owner role.
@@ -215,18 +215,18 @@ export default function Dashboard({
                     )}
 
                     {can_publish_posts && review_posts.length > 0 && (
-                        <div className="rounded-[24px] border border-[#d8cfc4] bg-[#fffaf4] p-6 shadow-sm">
+                        <div className="rounded-[24px] border border-[#d8cfc4] bg-[#fffaf4] p-6 shadow-sm dark:border-[#3a332c] dark:bg-[#211d19]">
                             <div className="flex flex-wrap items-center justify-between gap-3">
                                 <div>
                                     <h2 className="text-lg font-semibold">
                                         Owner review queue
                                     </h2>
-                                    <p className="mt-1 text-sm text-[#5f554b]">
+                                    <p className="mt-1 text-sm text-[#5f554b] dark:text-[#cdbfac]">
                                         Approve submitted admin posts before
                                         they go public.
                                     </p>
                                 </div>
-                                <span className="text-xs tracking-[0.3em] text-[#7a6f63] uppercase">
+                                <span className="text-xs tracking-[0.3em] text-[#7a6f63] uppercase dark:text-[#a99a88]">
                                     {review_posts.length} pending
                                 </span>
                             </div>
@@ -235,18 +235,18 @@ export default function Dashboard({
                                 {review_posts.map((post) => (
                                     <article
                                         key={post.id}
-                                        className="rounded-2xl border border-[#e1d7cc] bg-white/60 p-5"
+                                        className="rounded-2xl border border-[#e1d7cc] bg-white/60 p-5 dark:border-[#3a332c] dark:bg-[#181511]"
                                     >
                                         <div className="flex items-start justify-between gap-3">
                                             <div>
                                                 <h3 className="text-base font-semibold">
                                                     {post.title}
                                                 </h3>
-                                                <p className="mt-2 text-sm text-[#5f554b]">
+                                                <p className="mt-2 text-sm text-[#5f554b] dark:text-[#cdbfac]">
                                                     {post.description ??
                                                         'No description yet.'}
                                                 </p>
-                                                <p className="mt-3 text-xs text-[#7a6f63]">
+                                                <p className="mt-3 text-xs text-[#7a6f63] dark:text-[#a99a88]">
                                                     Submitted by{' '}
                                                     {post.author?.name ??
                                                         'Unknown author'}
@@ -288,11 +288,11 @@ export default function Dashboard({
                     )}
 
                     {posts.length === 0 ? (
-                        <div className="rounded-[24px] border border-dashed border-[#cbbdaf] bg-[#fffaf4]/70 p-8 text-center">
+                        <div className="rounded-[24px] border border-dashed border-[#cbbdaf] bg-[#fffaf4]/70 p-8 text-center dark:border-[#4a4036] dark:bg-[#211d19]/80">
                             <h2 className="text-lg font-semibold">
                                 No posts yet
                             </h2>
-                            <p className="mt-2 text-sm text-[#5f554b]">
+                            <p className="mt-2 text-sm text-[#5f554b] dark:text-[#cdbfac]">
                                 Create your first draft to see it listed here.
                             </p>
                         </div>
@@ -301,14 +301,14 @@ export default function Dashboard({
                             {posts.map((post) => (
                                 <article
                                     key={post.id}
-                                    className="rounded-[24px] border border-[#d8cfc4] bg-[#fffaf4] p-5 shadow-sm"
+                                    className="rounded-[24px] border border-[#d8cfc4] bg-[#fffaf4] p-5 shadow-sm dark:border-[#3a332c] dark:bg-[#211d19]"
                                 >
                                     <div className="flex items-start justify-between gap-3">
                                         <div>
                                             <h2 className="text-lg font-semibold">
                                                 {post.title}
                                             </h2>
-                                            <p className="mt-2 text-sm text-[#5f554b]">
+                                            <p className="mt-2 text-sm text-[#5f554b] dark:text-[#cdbfac]">
                                                 {post.description ??
                                                     'No description yet.'}
                                             </p>
@@ -333,7 +333,7 @@ export default function Dashboard({
                                                 : 'Pending'}
                                         </span>
                                     </div>
-                                    <div className="mt-4 flex flex-wrap items-center justify-between gap-2 text-xs text-[#7a6f63]">
+                                    <div className="mt-4 flex flex-wrap items-center justify-between gap-2 text-xs text-[#7a6f63] dark:text-[#a99a88]">
                                         <span>
                                             {post.published_at
                                                 ? `Published ${post.published_at}`

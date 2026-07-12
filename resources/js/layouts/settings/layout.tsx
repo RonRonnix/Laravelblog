@@ -32,14 +32,14 @@ export default function SettingsLayout({ children }: PropsWithChildren) {
     const { isCurrentOrParentUrl } = useCurrentUrl();
 
     return (
-        <div className="min-h-screen bg-[#e7ded4] px-6 py-10 text-[#25211c]">
+        <div className="min-h-screen bg-[#e7ded4] px-6 py-10 text-[#25211c] dark:bg-[#151311] dark:text-[#f4eadf]">
             <div className="mx-auto w-full max-w-6xl">
                 <Heading
                     title="Settings"
                     description="Manage your profile and account settings"
                 />
 
-                <div className="rounded-[28px] border border-[#d8cfc4] bg-[#fffaf4] p-6 shadow-[0_18px_55px_-45px_rgba(63,48,36,0.45)]">
+                <div className="rounded-[28px] border border-[#d8cfc4] bg-[#fffaf4] p-6 shadow-[0_18px_55px_-45px_rgba(63,48,36,0.45)] dark:border-[#3a332c] dark:bg-[#211d19]">
                     <div className="flex flex-col gap-8 lg:flex-row lg:gap-12">
                         <aside className="w-full lg:w-52">
                             <nav
@@ -53,9 +53,9 @@ export default function SettingsLayout({ children }: PropsWithChildren) {
                                         variant="ghost"
                                         asChild
                                         className={cn(
-                                            'w-full justify-start rounded-full text-[#5f554b] transition duration-150 hover:scale-[1.03] hover:bg-[#f1e8dd] hover:text-[#25211c]',
+                                            'w-full justify-start rounded-full text-[#5f554b] transition duration-150 hover:scale-[1.03] hover:bg-[#f1e8dd] hover:text-[#25211c] dark:text-[#cdbfac] dark:hover:bg-[#2c261f] dark:hover:text-[#f4eadf]',
                                             {
-                                                'bg-black text-white hover:bg-black/90 hover:text-white':
+                                                'bg-black text-white hover:bg-black/90 hover:text-white dark:bg-[#f4eadf] dark:text-[#151311] dark:hover:bg-white dark:hover:text-[#151311]':
                                                     isCurrentOrParentUrl(
                                                         item.href,
                                                     ),

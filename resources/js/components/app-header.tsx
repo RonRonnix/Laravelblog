@@ -63,7 +63,7 @@ export function AppHeader({ breadcrumbs = [] }: Props) {
 
     return (
         <>
-            <div className="sticky top-0 z-40 border-b border-[#d8cfc4] bg-[#fffaf4]/90 backdrop-blur">
+            <div className="sticky top-0 z-40 border-b border-[#d8cfc4] bg-[#fffaf4]/90 backdrop-blur dark:border-[#3a332c] dark:bg-[#151311]/90">
                 <div className="mx-auto flex h-16 items-center px-4 md:max-w-7xl">
                     {/* Mobile Menu */}
                     <div className="lg:hidden">
@@ -155,7 +155,7 @@ export function AppHeader({ breadcrumbs = [] }: Props) {
                         <div className="relative flex items-center space-x-1">
                             <Link
                                 href="/recipes"
-                                className="group inline-flex h-9 items-center gap-2 rounded-full border border-[#d8cfc4] bg-white/80 px-3 text-sm font-medium text-[#25211c] shadow-sm transition duration-150 hover:scale-[1.04] hover:border-[#b8aa9a] active:scale-95"
+                                className="group inline-flex h-9 items-center gap-2 rounded-full border border-[#d8cfc4] bg-white/80 px-3 text-sm font-medium text-[#25211c] shadow-sm transition duration-150 hover:scale-[1.04] hover:border-[#b8aa9a] active:scale-95 dark:border-[#4a4036] dark:bg-[#211d19] dark:text-[#f4eadf] dark:hover:border-[#6a5d4f]"
                             >
                                 <Search className="!size-5 opacity-80 group-hover:opacity-100" />
                                 <span className="hidden sm:inline">
@@ -194,13 +194,13 @@ export function AppHeader({ breadcrumbs = [] }: Props) {
                             <div className="flex items-center gap-2">
                                 <Link
                                     href="/login"
-                                    className="rounded-full border border-[#d8cfc4] bg-white/80 px-4 py-2 text-sm font-medium text-[#25211c] shadow-sm transition duration-150 hover:scale-[1.04] hover:border-[#b8aa9a] active:scale-95"
+                                    className="rounded-full border border-[#d8cfc4] bg-white/80 px-4 py-2 text-sm font-medium text-[#25211c] shadow-sm transition duration-150 hover:scale-[1.04] hover:border-[#b8aa9a] active:scale-95 dark:border-[#4a4036] dark:bg-[#211d19] dark:text-[#f4eadf] dark:hover:border-[#6a5d4f]"
                                 >
                                     Log in
                                 </Link>
                                 <Link
                                     href="/register"
-                                    className="rounded-full bg-black px-4 py-2 text-sm font-medium text-white shadow-sm transition duration-150 hover:scale-[1.04] hover:bg-black/90 active:scale-95"
+                                    className="rounded-full bg-black px-4 py-2 text-sm font-medium text-white shadow-sm transition duration-150 hover:scale-[1.04] hover:bg-black/90 active:scale-95 dark:bg-[#f4eadf] dark:text-[#151311] dark:hover:bg-white"
                                 >
                                     Register
                                 </Link>

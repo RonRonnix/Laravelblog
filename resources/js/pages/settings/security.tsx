@@ -72,7 +72,7 @@ export default function Security(props: Props) {
                                     id="current_password"
                                     ref={currentPasswordInput}
                                     name="current_password"
-                                    className="mt-1 block w-full border-[#d8cfc4] bg-white/70 text-[#25211c] placeholder:text-[#7a6f63]"
+                                    className="mt-1 block w-full border-[#d8cfc4] bg-white/70 text-[#25211c] placeholder:text-[#7a6f63] dark:border-[#4a4036] dark:bg-[#181511] dark:text-[#f4eadf] dark:placeholder:text-[#8f806f]"
                                     autoComplete="current-password"
                                     placeholder="Current password"
                                 />
@@ -87,7 +87,7 @@ export default function Security(props: Props) {
                                     id="password"
                                     ref={passwordInput}
                                     name="password"
-                                    className="mt-1 block w-full border-[#d8cfc4] bg-white/70 text-[#25211c] placeholder:text-[#7a6f63]"
+                                    className="mt-1 block w-full border-[#d8cfc4] bg-white/70 text-[#25211c] placeholder:text-[#7a6f63] dark:border-[#4a4036] dark:bg-[#181511] dark:text-[#f4eadf] dark:placeholder:text-[#8f806f]"
                                     autoComplete="new-password"
                                     placeholder="New password"
                                     passwordrules={props.passwordRules}
@@ -104,7 +104,7 @@ export default function Security(props: Props) {
                                 <PasswordInput
                                     id="password_confirmation"
                                     name="password_confirmation"
-                                    className="mt-1 block w-full border-[#d8cfc4] bg-white/70 text-[#25211c] placeholder:text-[#7a6f63]"
+                                    className="mt-1 block w-full border-[#d8cfc4] bg-white/70 text-[#25211c] placeholder:text-[#7a6f63] dark:border-[#4a4036] dark:bg-[#181511] dark:text-[#f4eadf] dark:placeholder:text-[#8f806f]"
                                     autoComplete="new-password"
                                     placeholder="Confirm password"
                                     passwordrules={props.passwordRules}
