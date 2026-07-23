@@ -131,12 +131,6 @@ export default function RecipeIndex({ query, recipes, error }: Props) {
                                 ? `Results for "${query}"`
                                 : 'Start a search'}
                         </h2>
-                        <Link
-                            href="/blog"
-                            className="rounded-full border border-[#d8cfc4] bg-[#fffaf4] px-4 py-2 text-sm shadow-sm transition duration-150 hover:scale-[1.04] hover:border-[#b8aa9a] active:scale-95"
-                        >
-                            Back to blog
-                        </Link>
                     </div>
 
                     {recipes.length > 0 ? (

@@ -1,5 +1,5 @@
 import { Link, usePage } from '@inertiajs/react';
-import { LayoutGrid, Menu, Newspaper, Search, Utensils } from 'lucide-react';
+import { LayoutGrid, Menu, Newspaper, Utensils } from 'lucide-react';
 import AppLogo from '@/components/app-logo';
 import AppLogoIcon from '@/components/app-logo-icon';
 import { Breadcrumbs } from '@/components/breadcrumbs';
@@ -155,18 +155,6 @@ export function AppHeader({ breadcrumbs = [] }: Props) {
                     </div>
 
                     <div className="ml-auto flex items-center space-x-2">
-                        <div className="relative flex items-center space-x-1">
-                            <Link
-                                href="/recipes"
-                                className="group inline-flex h-9 items-center gap-2 rounded-full border border-[#d8cfc4] bg-white/80 px-3 text-sm font-medium text-[#25211c] shadow-sm transition duration-150 hover:scale-[1.04] hover:border-[#b8aa9a] active:scale-95 dark:border-[#4a4036] dark:bg-[#211d19] dark:text-[#f4eadf] dark:hover:border-[#6a5d4f]"
-                            >
-                                <Search className="!size-5 opacity-80 group-hover:opacity-100" />
-                                <span className="hidden sm:inline">
-                                    Find recipes
-                                </span>
-                            </Link>
-                        </div>
-
                         {auth.user ? (
                             <DropdownMenu>
                                 <DropdownMenuTrigger asChild>
