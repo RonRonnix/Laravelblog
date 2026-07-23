@@ -58,11 +58,10 @@ export function AppFooter() {
     return (
         <footer className="border-t border-[#d8cfc4] bg-[#fffaf4] text-[#25211c] dark:border-[#3a332c] dark:bg-[#151311] dark:text-[#f4eadf]">
             <div className="mx-auto flex w-full max-w-7xl flex-col gap-8 px-4 py-10">
-                <p className="max-w-2xl text-base leading-7 text-[#5f554b] dark:text-[#cdbfac]">
+                <div className="grid gap-8 border-y border-[#d8cfc4] py-8 sm:grid-cols-4 dark:border-[#3a332c]">
+                    <p className="max-w-2xl text-base leading-7 text-[#5f554b] dark:text-[#cdbfac]">
                     Healthy recipes and fitness tips to fuel your daily life.
-                </p>
-
-                <div className="grid gap-8 border-y border-[#d8cfc4] py-8 sm:grid-cols-3 dark:border-[#3a332c]">
+                    </p>
                     {footerColumns.map((column) => (
                         <div key={column.title}>
                             <h2 className="text-xs font-semibold tracking-[0.28em] text-[#7a6f63] uppercase dark:text-[#a99a88]">
@@ -82,7 +81,7 @@ export function AppFooter() {
                     ))}
                 </div>
 
-                <form
+                {/* <form
                     className="flex flex-col gap-3 border-b border-[#d8cfc4] pb-8 sm:flex-row dark:border-[#3a332c]"
                     onSubmit={(event) => event.preventDefault()}
                 >
@@ -99,7 +98,7 @@ export function AppFooter() {
                         <Mail className="size-4" />
                         Subscribe
                     </Button>
-                </form>
+                </form> */}
 
                 <div className="flex flex-col gap-4 text-xs leading-6 text-[#7a6f63] sm:flex-row sm:items-end sm:justify-between dark:text-[#a99a88]">
                     <p className="max-w-3xl">
