@@ -14,6 +14,8 @@ class DashboardController extends Controller
     {
         $user = $request->user();
 
+        abort_unless($user->canWritePosts(), 403);
+
         $posts = Post::query()
             ->where('user_id', $user->id)
             ->latest()
